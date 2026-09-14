@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Romiz Size Level Printer</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#f3f5f8;
+  color:#252a34;
+}
+
+/* Header */
+.header{
+  background:linear-gradient(120deg,#1976f3,#7026d9);
+  color:white;
+  text-align:center;
+  padding:28px 15px 30px;
+}
+
+.header h1{
+  margin:0;
+  font-size:32px;
+  font-weight:800;
+}
+
+.header p{
+  margin:8px 0 0;
+  font-size:21px;
+}
+
+/* Main */
+.wrap{
+  max-width:700px;
+  margin:35px auto;
+  padding:0 16px;
+}
+
+.card{
+  background:#fff;
+  border-radius:25px;
+  padding:30px;
+  box-shadow:0 8px 30px rgba(0,0,0,.09);
+  margin-bottom:25px;
+}
+
+.form-card{
+  max-width:560px;
+  margin:auto;
+}
+
+h2{
+  text-align:center;
+  font-size:32px;
+  margin:5px 0 35px;
+}
+
+/* Form */
+label{
+  display:block;
+  font-size:22px;
+  font-weight:700;
+  margin:18px 0 10px;
+}
+
+input{
+  width:100%;
+  padding:18px 20px;
+  border:3px solid #d5d8de;
+  border-radius:16px;
+  font-size:21px;
+  outline:none;
+}
+
+input:focus{
+  border-color:#287bea;
+}
+
+/* Buttons */
+button{
+  width:100%;
+  border:0;
+  border-radius:15px;
+  padding:17px;
+  color:white;
+  font-size:23px;
+  font-weight:700;
+  margin-top:16px;
+  cursor:pointer;
+}
+
+.generate{
+  background:#1976ed;
+}
+
+.print{
+  background:#16a34a;
+}
+
+.clear{
+  background:#e52323;
+}
+
+/* Preview */
+.preview-title{
+  text-align:center;
+  font-size:27px;
+  font-weight:700;
+  margin:0 0 22px;
+}
+
+.hint{
+  text-align:center;
+  color:#777;
+  font-size:20px;
+}
+
+.labels{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:15px;
+}
+
+.label{
+  min-height:90px;
+  border:2px dashed #555;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:24px;
+  font-weight:800;
+  background:#fff;
+}
+
+/* Contact */
+.contact{
+  text-align:center;
+  font-size:17px;
+  color:#555;
+  margin-top:10px;
+}
+
+.contact a{
+  color:#1877f2;
+  text-decoration:none;
+  font-weight:700;
+}
+
+/* WhatsApp */
+.whatsapp{
+  position:fixed;
+  right:20px;
+  bottom:22px;
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:#25d366;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:35px;
+  box-shadow:0 5px 18px #999;
+  text-decoration:none;
+}
+
+/* Mobile */
+@media(max-width:600px){
+
+  .header h1{
+    font-size:29px;
+  }
+
+  .header p{
+    font-size:20px;
+  }
+
+  .wrap{
+    margin-top:25px;
+  }
+
+  .card{
+    padding:25px 18px;
+  }
+
+  h2{
+    font-size:29px;
+  }
+
+  .labels{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+/* Print */
+@media print{
+
+  body{
+    background:#fff;
+  }
+
+  .header,
+  .form-card,
+  .preview-title,
+  .hint,
+  .contact,
+  .whatsapp{
+    display:none !important;
+  }
+
+  .wrap{
+    margin:0;
+    padding:0;
+    max-width:none;
+  }
+
+  .card{
+    box-shadow:none;
+    padding:0;
+    margin:0;
+  }
+
+  .labels{
+    grid-template-columns:repeat(3,1fr);
+    gap:5mm;
+  }
+
+  .label{
+    border:1px solid #000;
+    break-inside:avoid;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="header">
+
+  <h1>🏷️ Romiz Size Level Printer</h1>
+
+  <p>Nazrul Islam Romiz</p>
+
+</header>
+
+
+<main class="wrap">
+
+  <!-- Form -->
+  <section class="card form-card">
+
+    <h2>Label তৈরি করুন</h2>
+
+    <label for="size">
+      Size / Level
+    </label>
+
+    <input
+      id="size"
+      type="text"
+      placeholder="যেমন: 16-20"
+    >
+
+    <label for="qty">
+      Quantity
+    </label>
+
+    <input
+      id="qty"
+      type="number"
+      min="1"
+      value="10"
+    >
+
+    <button
+      class="generate"
+      onclick="generateLabels()">
+      ✨ Generate
+    </button>
+
+    <button
+      class="print"
+      onclick="window.print()">
+      🖨️ Print
+    </button>
+
+    <button
+      class="clear"
+      onclick="clearLabels()">
+      🗑️ Clear
+    </button>
+
+  </section>
+
+
+  <!-- Preview -->
+  <section class="card">
+
+    <div class="preview-title">
+      👀 Label Preview
+    </div>
+
+    <div
+      id="preview"
+      class="hint">
+      Size লিখে Generate চাপুন
+    </div>
+
+  </section>
+
+
+  <!-- Contact -->
+  <div class="contact">
+
+    WhatsApp:
+    <a
+      href="https://wa.me/8801734050726"
+      target="_blank">
+      01734050726
+    </a>
+
+    &nbsp; | &nbsp;
+
+    Facebook:
+    <a
+      href="https://www.facebook.com/ni.romiz.fbking"
+      target="_blank">
+      Nazrul Islam Romiz
+    </a>
+
+  </div>
+
+</main>
+
+
+<!-- WhatsApp Button -->
+<a
+  class="whatsapp"
+  href="https://wa.me/8801734050726"
+  target="_blank"
+  aria-label="WhatsApp">
+  ☎
+</a>
+
+
+<script>
+
+function generateLabels(){
+
+  const size =
+    document
+    .getElementById("size")
+    .value
+    .trim();
+
+  const qty =
+    parseInt(
+      document
+      .getElementById("qty")
+      .value,
+      10
+    );
+
+  const preview =
+    document.getElementById("preview");
+
+
+  if(!size){
+
+    alert("দয়া করে Size / Level লিখুন।");
+
+    return;
+  }
+
+
+  if(!qty || qty < 1){
+
+    alert("Quantity সঠিকভাবে দিন।");
+
+    return;
+  }
+
+
+  preview.className = "labels";
+
+  preview.innerHTML = "";
+
+
+  for(let i = 0; i < qty; i++){
+
+    const div =
+      document.createElement("div");
+
+    div.className = "label";
+
+    div.textContent = size;
+
+    preview.appendChild(div);
+
+  }
+
+}
+
+
+function clearLabels(){
+
+  document
+  .getElementById("size")
+  .value = "";
+
+  document
+  .getElementById("qty")
+  .value = "10";
+
+
+  const preview =
+    document.getElementById("preview");
+
+  preview.className = "hint";
+
+  preview.textContent =
+    "Size লিখে Generate চাপুন";
+
+}
+
+</script>
+
+</body>
+</html>
