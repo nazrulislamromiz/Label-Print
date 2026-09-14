@@ -1,40 +1,532 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Size Level Printer | Nazrul Islam Romiz</title>
-  <meta name="description" content="Easy Size Level Label Printer by Nazrul Islam Romiz">
+<title>Size Level Printer | Nazrul Islam Romiz</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
+<meta name="description" content="Colorful Size Level Label Printer by Nazrul Islam Romiz">
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, "Noto Sans Bengali", sans-serif;
+    background:linear-gradient(135deg,#e3f2fd,#fce4ec,#fff3e0);
+    min-height:100vh;
+    padding:20px;
+    color:#222;
+}
+
+.container{
+    max-width:850px;
+    margin:auto;
+}
+
+.header{
+    background:linear-gradient(135deg,#1877f2,#7b1fa2);
+    color:white;
+    padding:25px 15px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+    margin-bottom:20px;
+}
+
+.header h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.header p{
+    font-size:15px;
+    opacity:.95;
+}
+
+.card{
+    background:white;
+    padding:22px;
+    border-radius:20px;
+    box-shadow:0 6px 22px rgba(0,0,0,.12);
+    margin-bottom:20px;
+}
+
+.card h2{
+    text-align:center;
+    margin-bottom:18px;
+    color:#333;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+input,select{
+    width:100%;
+    padding:13px;
+    border:2px solid #ddd;
+    border-radius:12px;
+    font-size:16px;
+    outline:none;
+}
+
+input:focus,select:focus{
+    border-color:#1877f2;
+}
+
+.buttons{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:15px;
+}
+
+button{
+    flex:1;
+    min-width:130px;
+    border:none;
+    padding:14px;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.generate{
+    background:#1877f2;
+    color:white;
+}
+
+.print{
+    background:#00a86b;
+    color:white;
+}
+
+.clear{
+    background:#e53935;
+    color:white;
+}
+
+button:hover{
+    opacity:.9;
+    transform:translateY(-1px);
+}
+
+/* Labels */
+
+.preview-title{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.labels{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.label{
+    min-height:150px;
+    border-radius:15px;
+    padding:15px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    border:3px solid #222;
+    background:white;
+    page-break-inside:avoid;
+}
+
+.label .brand{
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.label .size{
+    font-size:42px;
+    font-weight:900;
+    line-height:1;
+}
+
+.label .number{
+    margin-top:10px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* Different colors */
+
+.label:nth-child(5n+1){
+    background:#ffeb3b;
+}
+
+.label:nth-child(5n+2){
+    background:#81d4fa;
+}
+
+.label:nth-child(5n+3){
+    background:#ff80ab;
+}
+
+.label:nth-child(5n+4){
+    background:#a5d6a7;
+}
+
+.label:nth-child(5n+5){
+    background:#ce93d8;
+}
+
+.footer{
+    text-align:center;
+    background:white;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.1);
+}
+
+.footer strong{
+    color:#1877f2;
+}
+
+.social{
+    margin-top:12px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.social a{
+    text-decoration:none;
+    color:white;
+    padding:10px 16px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.whatsapp{
+    background:#25D366;
+}
+
+.facebook{
+    background:#1877F2;
+}
+
+@media(max-width:650px){
+    body{
+        padding:10px;
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f1f5f9;
-      color: #111827;
+    .header h1{
+        font-size:24px;
     }
 
-    .header {
-      background: linear-gradient(135deg, #1877f2, #6d28d9);
-      color: white;
-      text-align: center;
-      padding: 22px 15px;
-      box-shadow: 0 3px 10px rgba(0,0,0,.15);
+    .labels{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .header h1 {
-      margin: 0;
-      font-size: 27px;
+    .label{
+        min-height:130px;
     }
 
-    .header p {
-      margin: 7px 0 0;
-      font-size: 14px;
+    .label .size{
+        font-size:34px;
+    }
+}
+
+@media(max-width:400px){
+    .labels{
+        grid-template-columns:1fr 1fr;
+        gap:8px;
+    }
+
+    .label{
+        min-height:115px;
+        padding:10px;
+    }
+
+    .label .size{
+        font-size:30px;
+    }
+}
+
+/* PRINT */
+
+@media print{
+
+    body{
+        background:white;
+        padding:0;
+    }
+
+    .header,
+    .card,
+    .preview-title,
+    .footer{
+        display:none;
+    }
+
+    .container{
+        width:100%;
+        max-width:none;
+    }
+
+    .labels{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:5mm;
+        padding:5mm;
+    }
+
+    .label{
+        border:2px solid #000;
+        min-height:35mm;
+        border-radius:3mm;
+    }
+
+    .label .size{
+        font-size:30pt;
+    }
+
+    .label .brand{
+        font-size:9pt;
+    }
+
+    .label .number{
+        font-size:8pt;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🏷️ Size Level Printer</h1>
+        <p>Colorful Size Label তৈরি ও Print করুন</p>
+        <p>By <strong>Nazrul Islam Romiz</strong></p>
+    </div>
+
+
+    <div class="card">
+
+        <h2>⚙️ Label তৈরি করুন</h2>
+
+        <div class="form-group">
+            <label>Size নির্বাচন করুন</label>
+
+            <select id="size">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+                <option value="XXXL">XXXL</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label>Quantity</label>
+
+            <input
+                type="number"
+                id="quantity"
+                value="1"
+                min="1"
+                max="100"
+            >
+        </div>
+
+
+        <div class="form-group">
+            <label>Brand / দোকানের নাম</label>
+
+            <input
+                type="text"
+                id="brand"
+                value="Nazrul Islam Romiz"
+                placeholder="Brand Name"
+            >
+        </div>
+
+
+        <div class="buttons">
+
+            <button
+                class="generate"
+                onclick="generateLabels()">
+                ➕ Generate
+            </button>
+
+            <button
+                class="print"
+                onclick="window.print()">
+                🖨️ Print
+            </button>
+
+            <button
+                class="clear"
+                onclick="clearLabels()">
+                🗑️ Clear
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <h2 class="preview-title">
+        👇 Label Preview
+    </h2>
+
+
+    <div id="labels" class="labels">
+
+        <div class="label">
+
+            <div class="brand">
+                Nazrul Islam Romiz
+            </div>
+
+            <div class="size">
+                S
+            </div>
+
+            <div class="number">
+                Size Label
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+
+        <div>
+            <strong>Nazrul Islam Romiz</strong>
+        </div>
+
+        <div style="margin-top:5px;">
+            Size Level Printer
+        </div>
+
+        <div class="social">
+
+            <a
+                class="whatsapp"
+                href="https://wa.me/8801734050726"
+                target="_blank">
+                💬 WhatsApp
+            </a>
+
+            <a
+                class="facebook"
+                href="https://www.facebook.com/ni.romiz.fbking"
+                target="_blank">
+                📘 Facebook
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function generateLabels(){
+
+    const size =
+        document.getElementById("size").value;
+
+    const quantity =
+        parseInt(
+            document.getElementById("quantity").value
+        );
+
+    const brand =
+        document.getElementById("brand").value
+        || "Nazrul Islam Romiz";
+
+    const labels =
+        document.getElementById("labels");
+
+    labels.innerHTML = "";
+
+    if(quantity < 1){
+        alert("Quantity কমপক্ষে 1 হতে হবে।");
+        return;
+    }
+
+    for(let i = 1; i <= quantity; i++){
+
+        const label =
+            document.createElement("div");
+
+        label.className = "label";
+
+        label.innerHTML = `
+
+            <div class="brand">
+                ${escapeHTML(brand)}
+            </div>
+
+            <div class="size">
+                ${escapeHTML(size)}
+            </div>
+
+            <div class="number">
+                Label ${i}
+            </div>
+
+        `;
+
+        labels.appendChild(label);
+    }
+}
+
+
+function clearLabels(){
+
+    document.getElementById("labels").innerHTML = "";
+
+}
+
+
+function escapeHTML(text){
+
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+</script>
+
+</body>
+</html>      font-size: 14px;
     }
 
     .container {
